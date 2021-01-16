@@ -14,7 +14,10 @@ class Dice extends React.Component {
     render(){
         return (
             <div className="diceContainer">
-                <div className="dice">
+                <div 
+                className={this.props.diceClass + " dice"}
+                //onAnimationEnd={() => this.setState({ diceRolling: false })}
+                >
                     <div className="diceFace" id="face1">1</div>
                     <div className="diceFace" id="face2">2</div>
                     <div className="diceFace" id="face3">3</div>
