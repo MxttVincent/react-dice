@@ -1,13 +1,82 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
+  color: white;
+}
+
+.app {
+  text-align: center;
+  height: calc(100vh - 2em);
+  width: 100vw;
+}
+
+p {
+  margin: 0;
+  height: 2em;
+  line-height: 2em;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.diceContainer {
+  height: 200px;
+  width: 200px;
+  perspective: 600px;
+}
+
+/* Dice face styling */
+
+#diceArea {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.dice {
+  position: relative;
+  transform-style: preserve-3d;
+  height: 100%;
+  width: 100%;
+}
+
+.diceFace {
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  border: 4px solid black;
+  position: absolute;
+  opacity: 0.4;
+}
+
+#face1 {
+  transform: rotateY(0deg) translateZ(100px);
+}
+
+#face2 {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+#face3 {
+  transform: rotateY(180deg) translateZ(100px);;
+}
+
+#face4 {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+#face5 {
+  transform: rotateX( 90deg) translateZ(100px);
+}
+
+#face6 {
+  transform: rotateX(-90deg) translateZ(100px);
 }
