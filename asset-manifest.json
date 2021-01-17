@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/react-dice/static/css/main.c1522183.chunk.css",
+    "main.js": "/react-dice/static/js/main.ffb7ae8a.chunk.js",
+    "main.js.map": "/react-dice/static/js/main.ffb7ae8a.chunk.js.map",
+    "runtime-main.js": "/react-dice/static/js/runtime-main.104702ae.js",
+    "runtime-main.js.map": "/react-dice/static/js/runtime-main.104702ae.js.map",
+    "static/js/2.005ad918.chunk.js": "/react-dice/static/js/2.005ad918.chunk.js",
+    "static/js/2.005ad918.chunk.js.map": "/react-dice/static/js/2.005ad918.chunk.js.map",
+    "index.html": "/react-dice/index.html",
+    "static/css/main.c1522183.chunk.css.map": "/react-dice/static/css/main.c1522183.chunk.css.map",
+    "static/js/2.005ad918.chunk.js.LICENSE.txt": "/react-dice/static/js/2.005ad918.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/react-dice/static/media/dice-6.e0db6777.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.104702ae.js",
+    "static/js/2.005ad918.chunk.js",
+    "static/css/main.c1522183.chunk.css",
+    "static/js/main.ffb7ae8a.chunk.js"
+  ]
+}
