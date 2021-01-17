@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Dice from './components/dice';
+import DiceArea from './index';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('roll button fires event', () => {
+  const handle = jest.fn();
+  render(<div id="rollButton" onClick={handle}> <p>Roll</p></div>);
+  fireEvent.click(screen.getByText('Roll'));
+  expect(handle).toHaveBeenCalledTimes(1)
 });

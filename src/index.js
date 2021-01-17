@@ -92,5 +92,5 @@ class DiceArea extends React.Component{
 
 ReactDOM.render(
     <DiceArea />,
-  document.getElementById('root')
+  document.getElementById('root') || document.createElement('div') //Needed for testing
 );
