@@ -53,7 +53,7 @@ class DiceArea extends React.Component{
     return (
       <div className="app">
         <h1>
-          <p>{this.state.rollResult}</p>
+          <p>Roll the die!</p>
           <div id="rollButton" onClick={this.getDiceRoll}>
             <p>Roll</p>
           </div>
