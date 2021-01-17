@@ -12,13 +12,16 @@ class DiceArea extends React.Component{
       diceCount: 1,
       diceSideCount: 6,
       diceClass: "default",
-      diceRolling: false
+      diceRolling: false,
+      diceSkin: "redSkin",
+      modalState: "initial",
     };
   }
 
   getDiceRoll = () => {
     if (!this.state.diceRolling) {
       this.setState({ diceRolling: true });
+      //URL Params: 1d6 means one roll of a dice with 6 sides
       fetch("https://rolz.org/api/?1d6.json")
       .then(res => res.json())
       .then(
@@ -34,32 +37,52 @@ class DiceArea extends React.Component{
           rollResult: "Error reaching rolling API:", error
         })},
       );
+
+      //Fallback as onAnimationEnd doesn't appear to fire consistently - computedStyle remains as running
+      //setTimeout(() => this.setState({ diceRolling: false }), 1200);
     }
   }
 
-  rollDie = (number) => {
-    switch(number) {
-      case 1: alert();break;
-      case 2: break;
-      case 3: break;
-      case 4: break;
-      case 5: break;
-      case 6: break;
-      default: break;
-    }
+  handleModalClick = (evt) => {
+    this.setState({
+      modalState: "hiddenModal",
+      diceSkin: evt.target.id.replace("Choice", "")
+    });
   }
+
+  // rollStatus = (active) => {
+  //   this.setState({ diceRolling: active });
+  // }
   
   render() {
     return (
       <div className="app">
         <h1>
           <p>Roll the die!</p>
+
           <div id="rollButton" onClick={this.getDiceRoll}>
             <p>Roll</p>
           </div>
+
+          <div id="reskinButton" onClick={() => { this.setState({ modalState: "activeModal" }) }}>
+            <p>Change Skin</p>
+          </div>
         </h1>
+
+        <div id="modal" onClick={this.handleModalClick} className={this.state.modalState}>
+          <div id="innerModal">
+            <div id="whiteSkinChoice"></div>
+            <div id="blackSkinChoice"></div>
+            <div id="redSkinChoice"></div>
+          </div>
+        </div>
         <div id="diceArea">
-            <Dice diceClass={this.state.diceClass}/>
+            {/* Rolling prop not used until animation end figured out */}
+            <Dice 
+              diceClass={this.state.diceClass} 
+              rolling={this.rollStatus}
+              diceSkin={this.state.diceSkin}
+            />
         </div>
       </div>
     );

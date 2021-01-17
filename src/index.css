@@ -14,7 +14,7 @@ body {
 
 .app {
   text-align: center;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 165px);
   width: 100vw;
 }
 
@@ -26,7 +26,7 @@ p {
 h1 {
   margin: 0;
   height: 140px;
-  padding-top: 10px;
+  padding-top: 25px;
 }
 
 code {
@@ -41,7 +41,7 @@ code {
 }
 
 #rollButton {
-  background-color: grey;
+  background-color: rgb(209, 51, 51);
   border: 2px solid black;
   height: 2em;
   width: 100px;
@@ -51,7 +51,7 @@ code {
 }
 
 #rollButton:active {
-  background-color: rgb(104, 104, 104);
+  background-color: rgb(151, 44, 44);
 }
 
 #rollButton > p {
@@ -86,6 +86,123 @@ code {
   height: 100%;
   width: 100%;
   animation: diceRoll 1s ease-out;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    background-color: rgba(0,0,0,0.0);
+  }
+  100% {
+    background-color: rgba(0,0,0,0.4)
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    background-color: rgba(0,0,0,0.4);
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    background-color: rgba(0,0,0,0.0);
+    visibility: hidden;
+  }
+}
+
+#modal {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#innerModal {
+  height: 30%;
+  width: 30%;
+  background-color: white;
+  border-radius: 4px;
+  z-index: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#innerModal > div {
+  height: 100px;
+  width: 100px;
+  background-size: cover;
+  border: 4px solid grey;
+  cursor: pointer;
+}
+
+#whiteSkinChoice {
+  background-image: url("./assets/dice-6.png");
+}
+
+#blackSkinChoice {
+  background-image: url("./assets/dice-6.png");
+  filter: invert(100%);
+}
+
+#redSkinChoice {
+  background-image: url("./assets/dice-6-red.png");
+}
+
+.initial {
+  background-color: rgba(0,0,0,0.0);
+  visibility: hidden;
+}
+
+.activeModal {
+  visibility: visible;
+  animation: fadeIn 0.4s ease-out;
+  animation-fill-mode: forwards;
+}
+
+.hiddenModal {
+  animation: fadeOut 0.4s;
+  animation-fill-mode: forwards;
+}
+
+#reskinButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  height: 50px;
+  width: 130px;
+  padding: 0px 5px;
+  border: 1px solid white;
+  box-sizing: border-box;
+  font-size: 0.6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#reskinButton > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+}
+
+.blackSkin {
+  filter: invert(100%);
+  border: 4px solid white;
+}
+
+.redSkin {
+  border: 4px solid white !important;
 }
 
 /* Dice face styling */
@@ -94,6 +211,7 @@ code {
   width: 200px;
   height: 200px;
   border: 4px solid black;
+  box-sizing: border-box;
   position: absolute;
   opacity: 1;
   font-size: 3em;
@@ -109,9 +227,19 @@ code {
   background-image: url("./assets/dice-1.png");
 }
 
+#face1red {
+  transform: rotateY(0deg) translateZ(100px);
+  background-image: url("./assets/dice-1-red.png");
+}
+
 #face2 {
   transform: rotateY(90deg) translateZ(100px);
   background-image: url("./assets/dice-2.png");
+}
+
+#face2red {
+  transform: rotateY(90deg) translateZ(100px);
+  background-image: url("./assets/dice-2-red.png");
 }
 
 #face3 {
@@ -119,9 +247,19 @@ code {
   background-image: url("./assets/dice-3.png");
 }
 
+#face3red {
+  transform: rotateY(180deg) translateZ(100px);
+  background-image: url("./assets/dice-3-red.png");
+}
+
 #face4 {
   transform: rotateY(-90deg) translateZ(100px);
   background-image: url("./assets/dice-4.png");
+}
+
+#face4red {
+  transform: rotateY(-90deg) translateZ(100px);
+  background-image: url("./assets/dice-4-red.png");
 }
 
 #face5 {
@@ -129,63 +267,73 @@ code {
   background-image: url("./assets/dice-5.png");
 }
 
+#face5red {
+  transform: rotateX( 90deg) translateZ(100px);
+  background-image: url("./assets/dice-5-red.png");
+}
+
 #face6 {
   transform: rotateX(-90deg) translateZ(100px);
   background-image: url("./assets/dice-6.png");
 }
 
+#face6red {
+  transform: rotateX(-90deg) translateZ(100px);
+  background-image: url("./assets/dice-6-red.png");
+}
+
 /* Keyframes to support show classes */
 
 @keyframes diceRoll1 {
-  from {
+  0% {
     transform: rotateX(0deg) rotateY(0deg)
   }
-  to {
+  100% {
     transform: rotateX(360deg) rotateY(360deg)
   }
 }
 
 @keyframes diceRoll2 {
-  from {
+  0% {
     transform: rotateX(0deg) rotateY(0deg)
   }
-  to {
+  100% {
     transform: rotateX(360deg) rotateY(270deg)
   }
 }
 
 @keyframes diceRoll3 {
-  from {
+  0% {
     transform: rotateX(0deg) rotateY(0deg)
   }
-  to {
+  100% {
     transform: rotateX(360deg) rotateY(180deg)
   }
 }
 
 @keyframes diceRoll4 {
-  from {
+  0% {
     transform: rotateX(0deg) rotateY(-90deg)
   }
-  to {
+  100% {
     transform: rotateX(360deg) rotateY(90deg)
   }
 }
 
 @keyframes diceRoll5 {
-  from {
+  0% {
     transform: rotateX(-360deg) rotateY(0deg)
   }
-  to {
+  100% {
     transform: rotateX(-90deg) rotateY(360deg)
   }
 }
 
 @keyframes diceRoll6 {
-  from {
+  0% {
     transform: rotateX(-180deg) rotateY(0deg)
   }
-  to {
+  100% {
     transform: rotateX(90deg) rotateY(360deg)
   }
 }
@@ -195,30 +343,47 @@ code {
 .show1 {
   animation: diceRoll1 1.2s ease-out;
   animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 
 .show2 {
   animation: diceRoll2 1.2s ease-out;
   animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 
 .show3 {
   animation: diceRoll3 1.2s ease-out;
   animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 
 .show4 {
   animation: diceRoll4 1.2s ease-out;
   animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 
 .show5 {
   animation: diceRoll5 1.2s ease-out;
   animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 
 .show6 {
   animation: diceRoll6 1.2s ease-out;
   animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 
+@media (max-width: 435px){
+  body {
+    overflow-y: hidden;
+  }
+  h1 {
+    margin-bottom: 25px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
