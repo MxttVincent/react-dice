@@ -386,4 +386,8 @@ code {
     bottom: 0;
     width: 100%;
   }
+
+  #reskinButton {
+    display: none;
+  }
 }
